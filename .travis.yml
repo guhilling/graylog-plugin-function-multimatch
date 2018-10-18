@@ -16,7 +16,6 @@ matrix:
   include:
   - name: "Java 8"
     jdk: openjdk8
-    env: COVERAGE=1
   - name: "Java 8 (Oracle)"
     jdk: oraclejdk8
 
