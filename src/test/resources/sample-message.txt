@@ -1,0 +1,3 @@
+2019-02-08T10:54:15.342 ERROR [FactoryBean_Worker-2] Exception:   [] : FEHLER: C-K: Customer 8150239 existiert bereits.
+(Kunde{customer='8150239', hausnummernZusatz='null', location='Osna', ortsZusatz='null', postleitzahl='12345', postfach='null', laenderKennzeichen='D', firmenName='Gunnar Hilling', kundenTyp=PRIVATE})
+	Exception: Customer 8150239 existiert bereits.

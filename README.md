@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/guhilling/graylog-plugin-function-multimatch.svg?branch=master)](https://travis-ci.org/guhilling/graylog-plugin-function-multimatch)
+[![Maven Central](https://img.shields.io/maven-central/v/de.hilling.graylog/graylog-plugin-function-multimatch.svg)](http://search.maven.org/#search|gav|1|g:"de.hilling.graylog"%20AND%20a:"graylog-plugin-function-multimatch")
+
 # graylog multimatch function
 
 ## Graylog plugin for matching against multiple conditions

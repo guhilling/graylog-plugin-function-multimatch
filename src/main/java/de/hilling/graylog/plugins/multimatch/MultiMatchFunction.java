@@ -22,10 +22,10 @@ public class MultiMatchFunction implements Function<Boolean> {
     private static final String MATCHER_PARAM = "matcherMap";
 
     private final ParameterDescriptor<Message, Message> messageParam = type(MESSAGE_PARAM, Message.class).optional()
-                                                                                                         .description("The message to drop, defaults to '$message'")
+                                                                                                         .description("The message to verify, defaults to '$message'")
                                                                                                          .build();
 
-    private final ParameterDescriptor<Map, Map> matcherParam = type(MATCHER_PARAM, Map.class).description("The map conditions to evalutate")
+    private final ParameterDescriptor<Map, Map> matcherParam = type(MATCHER_PARAM, Map.class).description("The map conditions to evaluate")
                                                                                              .build();
 
 
@@ -40,7 +40,7 @@ public class MultiMatchFunction implements Function<Boolean> {
                                       .orElse(context.currentMessage());
         //noinspection unchecked
         Map<String, Object> matcherParams = matcherParam.optional(args, context).orElse(Collections.emptyMap());
-        log.info("message {}", message);
+        log.debug("message {}", message);
         List matchers = (List) matcherParams.get("value");
 
         if (matchers == null) {
@@ -53,7 +53,7 @@ public class MultiMatchFunction implements Function<Boolean> {
     public FunctionDescriptor<Boolean> descriptor() {
         return FunctionDescriptor.<Boolean>builder()
                 .name(NAME)
-                .description("Returns the length of a string")
+                .description("Matches multiple fields of the message to multiple conditions")
                 .params(of(messageParam, matcherParam))
                 .returnType(Boolean.class)
                 .build();
