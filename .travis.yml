@@ -21,7 +21,7 @@ matrix:
     jdk: oraclejdk8
 
 script:
-  - build/travis-build
+  build/travis-build
 
 cache:
   directories:
