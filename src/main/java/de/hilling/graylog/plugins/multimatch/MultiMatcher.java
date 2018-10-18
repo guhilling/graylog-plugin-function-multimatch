@@ -21,7 +21,7 @@ class MultiMatcher {
     boolean invoke() {
         return matchers.stream()
                        .anyMatch(map -> {
-                           Function.log.info("found object {}/{}", map, map.getClass());
+                           Function.log.debug("found object {}/{}", map, map.getClass());
                            if (map instanceof Map) {
                                return map.entrySet().stream().allMatch(this::match);
                            } else {

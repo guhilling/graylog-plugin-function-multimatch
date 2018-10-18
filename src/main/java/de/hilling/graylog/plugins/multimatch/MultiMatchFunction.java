@@ -40,7 +40,7 @@ public class MultiMatchFunction implements Function<Boolean> {
                                       .orElse(context.currentMessage());
         //noinspection unchecked
         Map<String, Object> matcherParams = matcherParam.optional(args, context).orElse(Collections.emptyMap());
-        log.info("message {}", message);
+        log.debug("message {}", message);
         List matchers = (List) matcherParams.get("value");
 
         if (matchers == null) {
