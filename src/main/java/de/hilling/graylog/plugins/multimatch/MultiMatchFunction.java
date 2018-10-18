@@ -53,7 +53,7 @@ public class MultiMatchFunction implements Function<Boolean> {
     public FunctionDescriptor<Boolean> descriptor() {
         return FunctionDescriptor.<Boolean>builder()
                 .name(NAME)
-                .description("Returns the length of a string")
+                .description("Matches multiple fields of the message to multiple conditions")
                 .params(of(messageParam, matcherParam))
                 .returnType(Boolean.class)
                 .build();

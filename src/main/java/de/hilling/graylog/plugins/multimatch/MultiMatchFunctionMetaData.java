@@ -38,7 +38,7 @@ public class MultiMatchFunctionMetaData implements PluginMetaData {
 
     @Override
     public String getDescription() {
-        return "Pipeline function that returns the length of a string.";
+        return "Pipeline function that matches multiple fields of the message to multiple conditions";
     }
 
     @Override
