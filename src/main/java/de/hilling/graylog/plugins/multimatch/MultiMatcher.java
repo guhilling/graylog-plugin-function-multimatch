@@ -19,16 +19,39 @@ class MultiMatcher {
     }
 
     boolean invoke() {
+        if (!typesCorrect(matchers)) {
+            Function.log.error("wrong type of configuration, expecting a list of maps");
+            return false;
+        }
         return matchers.stream()
-                       .anyMatch(map -> {
-                           Function.log.debug("found object {}/{}", map, map.getClass());
-                           if (map instanceof Map) {
-                               return map.entrySet().stream().allMatch(this::match);
-                           } else {
-                               Function.log.error("object should be a map, found {}", map.getClass());
-                               return false;
-                           }
-                       });
+                       .anyMatch(this::matchAllMapPredicates);
+    }
+
+    private boolean typesCorrect(List<?> matchers) {
+        return matchers.stream()
+                       .allMatch(this::assertStringMap);
+    }
+
+    private boolean assertStringMap(Object o) {
+        if (o instanceof Map) {
+            Map<?, ?> map = (Map) o;
+            return map.entrySet()
+                      .stream()
+                      .allMatch(this::assertStrings);
+        } else {
+            return false;
+        }
+    }
+
+    private boolean assertStrings(Map.Entry entry) {
+        return entry.getKey() instanceof String && entry.getValue() instanceof String;
+    }
+
+    private boolean matchAllMapPredicates(Map<String, String> map) {
+        Function.log.debug("found object {}/{}", map, map.getClass());
+        return map.entrySet()
+                  .stream()
+                  .allMatch(this::match);
     }
 
     private boolean match(Map.Entry<String, String> mapEntry) {
