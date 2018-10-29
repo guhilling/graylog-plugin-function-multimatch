@@ -7,7 +7,7 @@
 
     <groupId>de.hilling.graylog</groupId>
     <artifactId>graylog-plugin-function-multimatch</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
     <inceptionYear>2018</inceptionYear>
     <packaging>jar</packaging>
 
@@ -26,7 +26,7 @@
         <connection>scm:git:git@github.com:guhilling/graylog-plugin-function-multimatch.git</connection>
         <developerConnection>scm:git:git@github.com:guhilling/graylog-plugin-function-multimatch.git</developerConnection>
         <url>https://github.com/guhilling/graylog-plugin-function-multimatch</url>
-        <tag>graylog-plugin-function-multimatch-1.0.3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>
