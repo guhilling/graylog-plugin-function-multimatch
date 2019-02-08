@@ -22,10 +22,10 @@ public class MultiMatchFunction implements Function<Boolean> {
     private static final String MATCHER_PARAM = "matcherMap";
 
     private final ParameterDescriptor<Message, Message> messageParam = type(MESSAGE_PARAM, Message.class).optional()
-                                                                                                         .description("The message to drop, defaults to '$message'")
+                                                                                                         .description("The message to verify, defaults to '$message'")
                                                                                                          .build();
 
-    private final ParameterDescriptor<Map, Map> matcherParam = type(MATCHER_PARAM, Map.class).description("The map conditions to evalutate")
+    private final ParameterDescriptor<Map, Map> matcherParam = type(MATCHER_PARAM, Map.class).description("The map conditions to evaluate")
                                                                                              .build();
 
 
