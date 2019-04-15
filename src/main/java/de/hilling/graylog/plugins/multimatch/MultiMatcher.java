@@ -13,11 +13,11 @@ import java.util.regex.Pattern;
 
 class MultiMatcher {
     private static final String MESSAGE_KEY = "message";
+    private static final Cache<String, Pattern> PATTERN_CACHE = Caffeine.newBuilder()
+                                                                        .maximumSize(2000)
+                                                                        .build();
     private final List<Map<String, String>> matchers;
     private final Message message;
-    private final Cache<String, Pattern> patternCache = Caffeine.newBuilder()
-                                                                .maximumSize(2000)
-                                                                .build();
 
     MultiMatcher(@Nonnull List<Map<String, String>> matchers, @Nonnull Message message) {
         this.matchers = matchers;
@@ -74,11 +74,12 @@ class MultiMatcher {
     }
 
     private Pattern fromCache(String matcherString) {
-        return patternCache.get(matcherString, t -> Pattern.compile(matcherString, Pattern.DOTALL | Pattern.MULTILINE));
+        return PATTERN_CACHE.get(matcherString, t -> Pattern.compile(matcherString, Pattern.DOTALL | Pattern.MULTILINE));
     }
 
     private boolean matchMessage(String matcherString) {
         String messageField = message.getFieldAs(String.class, MESSAGE_KEY);
-        return fromCache(matcherString).matcher(messageField).matches();
+        return fromCache(matcherString).matcher(messageField)
+                                       .matches();
     }
 }
