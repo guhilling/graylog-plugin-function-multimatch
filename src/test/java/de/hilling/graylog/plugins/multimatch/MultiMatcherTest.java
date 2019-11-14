@@ -40,28 +40,24 @@ public class MultiMatcherTest {
         final long startTime = System.currentTimeMillis();
         Thread last = null;
         for (int i = 0; i < 10; i++) {
-            last = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        invocations.incrementAndGet();
-                        long n = invocations.get();
-                        JSONArray jsonArray = new JSONArray();
-                        HashMap<String, String> matcherMap = new HashMap<>();
-                        jsonArray.appendElement(matcherMap);
-                        matcherMap.put("room", "0816");
-                        if (n % 2 == 0) {
-                            matcherMap.put("message", "^.*FEHLER.*$");
-                        } else {
-                            final int epsilon = new Random().nextInt(1000);
-                            matcherMap.put("message", "^.*FEHLER" + epsilon + ".*$");
-                        }
-                        testMessage.addField("room", "0816");
-                        new MultiMatcher((List) jsonArray, testMessage).invoke();
-                        if (n % 1_000_000 == 0) {
-                            long timediff = System.currentTimeMillis() - startTime;
-                            System.out.println("n: " + n + " in " + timediff + "ms (" + n/timediff + "kmsg/s");
-                        }
+            last = new Thread(() -> {
+                while (true) {
+                    long n = invocations.incrementAndGet();
+                    JSONArray jsonArray = new JSONArray();
+                    HashMap<String, String> matcherMap = new HashMap<>();
+                    jsonArray.appendElement(matcherMap);
+                    matcherMap.put("room", "0816");
+                    if (n % 2 == 0) {
+                        matcherMap.put("message", "^.*FEHLER.*$");
+                    } else {
+                        final int epsilon = new Random().nextInt(1000);
+                        matcherMap.put("message", "^.*FEHLER" + epsilon + ".*$");
+                    }
+                    testMessage.addField("room", "0816");
+                    new MultiMatcher((List) jsonArray, testMessage).invoke();
+                    if (n % 1_000_000 == 0) {
+                        long timediff = System.currentTimeMillis() - startTime;
+                        System.out.println("n: " + n + " in " + timediff + "ms (" + n/timediff + "kmsg/s");
                     }
                 }
             }, "worker-" + i);
