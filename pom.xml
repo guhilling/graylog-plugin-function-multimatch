@@ -45,9 +45,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <graylog.version>2.5.2</graylog.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <graylog.version>4.0.5</graylog.version>
         <junit.version>5.7.1</junit.version>
         <graylog.plugin-dir>/usr/share/graylog-server/plugin</graylog.plugin-dir>
     </properties>
@@ -58,12 +58,6 @@
             <artifactId>graylog2-server</artifactId>
             <version>${graylog.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.graylog.plugins</groupId>
-            <artifactId>graylog-plugin-pipeline-processor</artifactId>
-            <version>${graylog.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>
