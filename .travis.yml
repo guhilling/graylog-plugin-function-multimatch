@@ -14,10 +14,10 @@ install: /bin/true
 
 matrix:
   include:
-  - name: "Java 8"
-    jdk: openjdk8
-  - name: "Java 8 (Oracle)"
-    jdk: oraclejdk8
+  - name: "Java 11"
+    jdk: openjdk11
+  - name: "Java 16"
+    jdk: openjdk16
 
 script:
   build/travis-build
